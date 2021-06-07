@@ -39,7 +39,7 @@ def process_sources(sources_list):
     '''
     function that processes news sources
     Args:
-        sources_list:A list of dictionaries that contain sources
+        sources_list:A list of dictionaries that contain sources details
     Returns:
         sources_results:A list of sources objects
     '''
@@ -59,3 +59,18 @@ def process_sources(sources_list):
         sources_results.append(sources_object)
 
     return sources_results
+
+def get_articles(id):
+    '''
+    function that processes articles and returns a list of articles
+    '''
+    get_articles_url = articles_url.format(id, api_key)
+
+    with urllib.request.urlopen(get_articles_url) as url:
+        articles_results = json.loads(url.read())
+
+        articles_object = None
+        if articles_results['articles']:
+            articles_object = process_articles(articles_results['articles'])
+
+    return articles_object
