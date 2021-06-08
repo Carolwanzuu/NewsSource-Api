@@ -17,11 +17,11 @@ def configure_request(app):
     base_url = app.config['News_Api_Base_Url']
     articles_url = app.config['Articles_Base_Url']
 
-def get_sources(category):
+def get_sources(sources):
     '''
     function that gets json response to our url request
     '''
-    get_sources_url = base_url.format(category,api_key)
+    get_sources_url = base_url.format(sources,api_key)
 
     with urllib.request.urlopen(get_sources_url) as url:
         get_sources_data = url.read()
@@ -44,9 +44,9 @@ def process_sources(sources_list):
         sources_results:A list of sources objects
     '''
 
-    sources_results = []
+    sources_results_list = []
 
-    for source_item in sources_list:
+    for source_item in sources_results_list:
         id = source_item.get('id')
         name = source_item.get('name')
         description = source_item.get('description')
@@ -56,15 +56,15 @@ def process_sources(sources_list):
         country = source_item.get('country')
 
         sources_object = Sources(id,name, description, url, category, language, country)
-        sources_results.append(sources_object)
+        sources_results_list.append(sources_object)
 
-    return sources_results
+    return sources_results_list
 
-def get_articles(id):
+def get_articles(title):
     '''
     function that processes articles and returns a list of articles
     '''
-    get_articles_url = articles_url.format(id, api_key)
+    get_articles_url = articles_url.format(title, api_key)
 
     with urllib.request.urlopen(get_articles_url) as url:
         get_articles_data = url.read()
@@ -99,9 +99,8 @@ def process_articles(articles_list):
 		image = article_item.get('urlToImage')
 		date = article_item.get('publishedAt')
 
-        if image:
+        
+        articles_results = Articles(id, author, title,description, url, image,date)
+        articles_results.append(articles_results)
 
-            articles_object = Articles(id, author, title,description, url, image,date)
-            articles_results.append(articles_object)
-
-     return articles_results
+      return articles_results
