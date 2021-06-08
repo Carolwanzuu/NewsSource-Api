@@ -21,5 +21,5 @@ def index():
 
 @main.route('/articles/<id>')
 def articles(id):
-  articles = get_articles(id)
-  return render_template('articles.html')
+    articles = get_articles(id)
+    return render_template('articles.html')
