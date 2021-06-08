@@ -1,5 +1,5 @@
 import urllib.request, json
-from models import Sources,Articles
+from .models import Sources,Articles
 from datetime import datetime
 
 # getting api key
@@ -47,16 +47,16 @@ def process_sources(sources_list):
     sources_results_list = []
 
     for source_item in sources_results_list:
-        id = source_item.get('id')
-        name = source_item.get('name')
-        description = source_item.get('description')
-        url = source_item.get('url')
-        category = source_item.get('category')
-        language = source_item.get('language')
-        country = source_item.get('country')
+            id = source_item.get('id')
+            name = source_item.get('name')
+            description = source_item.get('description')
+            url = source_item.get('url')
+            category = source_item.get('category')
+            language = source_item.get('language')
+            country = source_item.get('country')
 
-        sources_object = Sources(id,name, description, url, category, language, country)
-        sources_results_list.append(sources_object)
+            sources_object = Sources(id,name, description, url, category, language, country)
+            sources_results_list.append(sources_object)
 
     return sources_results_list
 
@@ -72,8 +72,9 @@ def get_articles(title):
         # articles_results = json.loads(url.read())
 
         articles_results = None
+        
         if get_articles_response['articles']:
-            articles_results_list = get_articles_response['articles']:
+            articles_results_list = get_articles_response['articles']
             articles_results = process_articles(articles_results_list)
 
     
@@ -91,16 +92,16 @@ def process_articles(articles_list):
 
      for article_item in articles_list:
 
-        id = article_item.get('id')
-        author = article_item.get('author')
-		title = article_item.get('title')
-		description = article_item.get('description')
-		url = article_item.get('url')
-		image = article_item.get('urlToImage')
-		date = article_item.get('publishedAt')
+            id = article_item.get('id')
+            author = article_item.get('author')
+            title = article_item.get('title')
+            description = article_item.get('description')
+            url = article_item.get('url')
+            image = article_item.get('urlToImage')
+            date = article_item.get('publishedAt')
 
         
-        articles_results = Articles(id, author, title,description, url, image,date)
-        articles_results.append(articles_results)
+            articles_results = Articles(id, author, title,description, url, image,date)
+            articles_results.append(articles_results)
 
-      return articles_results
+            return articles_results
