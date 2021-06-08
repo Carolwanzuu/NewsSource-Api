@@ -7,7 +7,9 @@ class Config:
     Articles_Base_Url = 'https://newsapi.org/v2/everything?language=en&sources={}&apiKey={}'
     News_Api_Key = os.environ.get('News_Api_Key')
     # SECRET_kEY = os.environ.get('SECRET_KEY')
-
+    @staticmethod
+    def init_app(app):
+        pass
 
 
 class ProdConfig(Config):
