@@ -10,13 +10,14 @@ def index():
         '''
         view root page function
         '''
+        general_sources = get_sources('general')
         sources = get_sources('business')
         sports_sources = get_sources('sports')
         technology_sources = get_sources('technology')
         entertainment_sources = get_sources('entertainment')
         title = "NEWS"
     
-        return render_template('index.html',title = title, sources = sources,sports_sources = sports_sources,technology_sources = technology_sources,entertainment_sources = entertainment_sources)
+        return render_template('index.html',title = title, general = general_sources, sources = sources,sports_sources = sports_sources,technology_sources = technology_sources,entertainment_sources = entertainment_sources)
     
 
 
