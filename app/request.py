@@ -13,9 +13,9 @@ articles_url = None
 
 def configure_request(app):
     global api_key, base_url, articles_url
-    api_key = app.config['News_Api_Key']
-    base_url = app.config['News_Api_Base_Url']
-    articles_url = app.config['Articles_Base_Url']
+    api_key = app.config['NEWS_API_KEY']
+    base_url = app.config['NEWS_API_BASE_URL']
+    articles_url = app.config['ARTICLES_BASE_URL']
 
 def get_sources(sources):
     '''
