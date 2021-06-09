@@ -1,7 +1,3 @@
-from os import name
-from re import I
-
-
 class Sources:
     '''
     news source class to define sources objects
