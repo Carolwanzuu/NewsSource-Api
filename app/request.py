@@ -1,5 +1,5 @@
 import urllib.request, json
-from .models import Sources,Articles
+from .models import Sources, Articles
 from datetime import datetime
 
 # getting api key
@@ -17,25 +17,25 @@ def configure_request(app):
         base_url = app.config['NEWS_API_BASE_URL']
         articles_url = app.config['ARTICLES_BASE_URL']
 
-def get_sources(category):
+def get_sources(sources):
         '''
         function that gets json response to our url request
         '''
-        get_sources_url = base_url.format(category,api_key)
-
+        get_sources_url = base_url.format(sources,api_key)
+        
         with urllib.request.urlopen(get_sources_url) as url:
             get_sources_data = url.read()
             get_sources_response = json.loads(get_sources_data)
-
+            
             sources_results = None
-
             if get_sources_response['sources']:
                 sources_results_list = get_sources_response['sources']
                 sources_results = process_sources(sources_results_list)
-
+        
+        
         return sources_results
 
-def process_sources(sources_results_list):
+def process_sources(sources_resultsList):
         '''
         function that processes news sources results and transforms them to a list of objects
         Args:
@@ -46,7 +46,7 @@ def process_sources(sources_results_list):
 
         sources_results_list = []
 
-        for source_item in sources_results_list:
+        for source_item in sources_resultsList:
                 id = source_item.get('id')
                 name = source_item.get('name')
                 description = source_item.get('description')
@@ -93,7 +93,7 @@ def process_articles(articles_list):
 
         for article_item in articles_list:
 
-                id = article_item.get('id')
+                
                 author = article_item.get('author')
                 title = article_item.get('title')
                 description = article_item.get('description')
@@ -102,7 +102,7 @@ def process_articles(articles_list):
                 date = article_item.get('publishedAt')
 
             
-                articles_results = Articles(id, author, title,description, url, image,date)
-                articles_results.append(articles_results)
+                articles = Articles(author, title,description, url, image,date)
+                articles_results.append(articles)
 
         return articles_results
